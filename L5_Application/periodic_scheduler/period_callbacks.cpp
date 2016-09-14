@@ -32,6 +32,8 @@
 #include "io.hpp"
 #include "periodic_callback.h"
 
+#include "global_variables.hpp"
+
 
 
 /// This is the stack size used for each of the period tasks (1Hz, 10Hz, 100Hz, and 1000Hz)
@@ -62,20 +64,35 @@ bool period_reg_tlm(void)
 
 void period_1Hz(void)
 {
-    LE.toggle(1);
+//    LE.toggle(1);
+/*
+    static LED& button_led = LED::getInstance();
+    static bool gpio_created = false;
+    if(!gpio_created){
+        button_led.init();
+        button_led.off(2);
+        gpio_created = true;
+    }
+    if(button_pressed){
+        button_led.on(2);
+        vTaskDelay(500);
+        button_led.off(2);
+        button_pressed = false;
+    }
+*/
 }
 
 void period_10Hz(void)
 {
-    LE.toggle(2);
+//    LE.toggle(2);
 }
 
 void period_100Hz(void)
 {
-    LE.toggle(3);
+//    LE.toggle(3);
 }
 
 void period_1000Hz(void)
 {
-    LE.toggle(4);
+//    LE.toggle(4);
 }

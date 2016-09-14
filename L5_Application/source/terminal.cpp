@@ -129,6 +129,18 @@ bool terminalTask::taskEntry()
                                                  "'telemetry get <comp. name> <name>' to get variable value\n");
     #endif
 
+	#if 1	// This if block contains custom command handlers.
+    		//	Change the "1" to a "0" to disable these handlers.
+    CMD_HANDLER_FUNC(temperature_command_handler); // Promise the compiler that  we define this later
+    cp.addHandler(temperature_command_handler, "temp",  "Outputs current temperature as read by onboard device.\n"
+    													"'temp <unit> <N>' : Print temperature with N digits after the "
+    													"decimal point If no number is specified, the default is "
+    													"two digits. The <unit> parameter determines if the reading "
+                                                        "is present as Fahrenheit, Celsius, or Kelvin. For example:\n"
+                                                        "\ttemp F 1\n"
+                                                        "\tCurrent temperature: 89.1 F\n");
+	#endif
+
     // Initialize Interrupt driven version of getchar & putchar
     Uart0& uart0 = Uart0::getInstance();
     bool success = uart0.init(SYS_CFG_UART0_BPS, 32, SYS_CFG_UART0_TXQ_SIZE);
